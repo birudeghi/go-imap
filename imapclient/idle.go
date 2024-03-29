@@ -110,7 +110,7 @@ func (cmd *IdleCommand) runWithInterval(c *Client, child *idleCommand, restartIn
 	for {
 		select {
 		case <-timer.C:
-			timer.Reset(idleRestartInterval)
+			timer.Reset(*restartInterval)
 
 			if cmd.err = child.Close(); cmd.err != nil {
 				return
