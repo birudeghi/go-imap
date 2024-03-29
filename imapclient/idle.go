@@ -115,6 +115,9 @@ func (cmd *IdleCommand) runWithInterval(c *Client, child *idleCommand, restartIn
 			if cmd.err = child.Close(); cmd.err != nil {
 				return
 			}
+			if cmd.err = child.Wait(); cmd.err != nil {
+				return
+			}
 			if child, cmd.err = c.idle(); cmd.err != nil {
 				return
 			}
